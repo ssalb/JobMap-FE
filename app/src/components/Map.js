@@ -23,8 +23,8 @@ export default class AppMap extends React.Component {
 
     this.state = {
       myPosition: {
-        lat: 48.1248256,
-        lon: 11.5717514
+        lat: 48.541134,
+        lon: 12.124257
       },
       ts: 12345678,
       gotPosition: false,
@@ -36,11 +36,16 @@ export default class AppMap extends React.Component {
 
   componentDidMount() {
     fetch("http://localhost:5000/get-current-objects", {
-      method: "GET",
+      method: "POST",
       mode: "cors",
       headers: new Headers({
-        "content-type": "application/json",
-        Authorization: `Bearer ${this.props.handleLogin}`
+        "content-type": "application/json"
+      }),
+      body: JSON.stringify({
+        target: "workerpool",
+        competencies: "feld, pflege",
+        radius_km: "5",
+        location: [this.state.myPosition.lat, this.state.myPosition.lon]
       })
     })
       .then(r => r.json())
@@ -70,8 +75,6 @@ export default class AppMap extends React.Component {
       <div id="map">
         <Map style={mapStyle} center={position} zoom={this.state.zoom}>
           <TileLayer
-            // attribution='<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>'
-            // url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
             attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"
           />

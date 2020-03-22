@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "./components/Layout";
 import AppMap from "./components/Map";
+import JobForm from "./components/JobForm";
 
 const routes = [
   {
@@ -10,9 +11,9 @@ const routes = [
     main: AppMap
   },
   {
-    path: "/new",
-    text: "New!",
-    main: () => <h2>New!</h2>
+    path: "/new-job",
+    text: "New job",
+    main: JobForm
   }
 ];
 

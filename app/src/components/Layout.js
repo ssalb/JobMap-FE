@@ -69,9 +69,7 @@ function ResponsiveDrawer(props) {
       <List>
         {routes.map(route => (
           <ListItem button key={route.key} component={Link} to={route.path}>
-            <ListItemIcon>
-              <MailIcon />
-            </ListItemIcon>
+            <ListItemIcon>{/* <MailIcon /> */}</ListItemIcon>
             <ListItemText primary={route.text} />
           </ListItem>
         ))}
