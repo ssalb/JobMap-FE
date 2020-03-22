@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import Skills from "./Skills";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 
@@ -31,31 +32,40 @@ export default class WorkerForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSkills = this.handleSkills.bind(this);
+  }
+
+  handleSkills(str) {
+    this.setState({
+      skills: str
+    });
+    console.log(str);
   }
 
   handleSubmit(event) {
-    fetch("http://localhost:5000/register", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: this.state.name,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password
-      })
-    })
-      .then(response => {
-        if (response.status === 200) {
-          this.props.history.push("/login");
-        }
-        // TODO else show alert
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    console.log(this.state.skills);
+    // fetch("http://localhost:5000/register", {
+    //   method: "POST",
+    //   mode: "cors",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     name: this.state.name,
+    //     lastName: this.state.lastName,
+    //     email: this.state.email,
+    //     password: this.state.password
+    //   })
+    // })
+    //   .then(response => {
+    //     if (response.status === 200) {
+    //       this.props.history.push("/login");
+    //     }
+    //     // TODO else show alert
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
     event.preventDefault();
   }
 
@@ -133,6 +143,11 @@ export default class WorkerForm extends React.Component {
                 rowsMax="4"
                 required
               />
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <Skills handleSkills={this.handleSkills} />
             </Grid>
           </Grid>
           <Grid container spacing={3}>

@@ -3,6 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import userLocationIcon from "./user-location.svg";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import InfoCard from "./InfoCard";
 
 const mapStyle = {
   position: "absolute",
@@ -35,7 +36,7 @@ export default class AppMap extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/get-current-objects", {
+    fetch("https://jobmap.azurewebsites.net/suche", {
       method: "POST",
       mode: "cors",
       headers: new Headers({
@@ -43,17 +44,19 @@ export default class AppMap extends React.Component {
       }),
       body: JSON.stringify({
         target: "workerpool",
-        competencies: "feld, pflege",
+        competencies: "handwerk",
         radius_km: "5",
         location: [this.state.myPosition.lat, this.state.myPosition.lon]
       })
     })
       .then(r => r.json())
       .then(data => {
-        this.setState({
-          currentObjects: data.elements,
-          gotObjects: true
-        });
+        if (data.status === "success") {
+          this.setState({
+            currentObjects: data.results,
+            gotObjects: true
+          });
+        }
       });
 
     navigator.geolocation.getCurrentPosition(coords => {
@@ -80,9 +83,13 @@ export default class AppMap extends React.Component {
           />
           {this.state.gotObjects && this.state.gotPosition
             ? this.state.currentObjects.map(obj => (
-                <Marker key={obj.text} position={obj.position} icon={locIcon}>
+                <Marker
+                  key={obj.text}
+                  position={[obj.location.lat, obj.location.lng]}
+                  icon={locIcon}
+                >
                   <Popup>
-                    <p>{obj.text}</p>
+                    <InfoCard objInfo={obj} />
                   </Popup>
                 </Marker>
               ))
