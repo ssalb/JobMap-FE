@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 
-export default class JobForm extends React.Component {
+export default class WorkerForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,15 +19,14 @@ export default class JobForm extends React.Component {
     }));
 
     this.state = {
-      companyName: "",
+      name: "",
       email: "",
       phoneNumber: "",
       location: "",
-      jobDescription: "",
+      description: "",
       skills: "",
       workingDays: "",
-      workingtime: "",
-      hourlyRate: ""
+      workingtime: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -75,9 +74,9 @@ export default class JobForm extends React.Component {
             <Grid item xs>
               <TextField
                 type="name"
-                name="companyName"
-                label="Unternehmensname"
-                value={this.state.companyName}
+                name="name"
+                label="Vor- & Nachname"
+                value={this.state.name}
                 onChange={this.handleChange}
                 variant="outlined"
                 required
@@ -125,27 +124,13 @@ export default class JobForm extends React.Component {
           <Grid container spacing={3}>
             <Grid item xs>
               <TextField
-                name="jobDescription"
-                label="Jobbeschreibung"
-                value={this.state.jobDescription}
+                name="description"
+                label="Personenbeschreibung"
+                value={this.state.description}
                 onChange={this.handleChange}
                 variant="outlined"
                 multiline
                 rowsMax="4"
-                required
-              />
-            </Grid>
-          </Grid>
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <TextField
-                type="number"
-                pattern="^\d+(\.|\,)\d{2}$"
-                name="hourlyRate"
-                label="Stundenlohn"
-                value={this.state.hourlyRate}
-                onChange={this.handleChange}
-                variant="outlined"
                 required
               />
             </Grid>

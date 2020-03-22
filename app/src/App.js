@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "./components/Layout";
 import AppMap from "./components/Map";
 import JobForm from "./components/JobForm";
+import WorkerForm from "./components/WorkerForm";
 
 const routes = [
   {
@@ -12,8 +13,13 @@ const routes = [
   },
   {
     path: "/new-job",
-    text: "New job",
+    text: "New Job",
     main: JobForm
+  },
+  {
+    path: "/new-worker",
+    text: "New Worker",
+    main: WorkerForm
   }
 ];
 
