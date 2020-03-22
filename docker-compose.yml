@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  app:
+    build: ./app
+    volumes:
+      - ./app:/app
+    networks:
+      - default-network
+    ports:
+      - "127.0.0.1:3000:3000"
+
+networks:
+  default-network:
