@@ -67,6 +67,13 @@ function infoCard(props) {
         <Typography variant="body2" component="p">
           {objInfo.text}
         </Typography>
+
+        <Typography className={classes.pos} color="textSecondary">
+          Kompetentzen
+        </Typography>
+        <Typography variant="body2" component="p">
+          {objInfo.competencies.map(elem => `- ${elem} `)}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Learn More</Button>

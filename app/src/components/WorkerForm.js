@@ -35,37 +35,37 @@ export default class WorkerForm extends React.Component {
     this.handleSkills = this.handleSkills.bind(this);
   }
 
-  handleSkills(str) {
+  handleSkills(selSkills) {
     this.setState({
-      skills: str
+      skills: selSkills
     });
-    console.log(str);
+    console.log(selSkills);
   }
 
   handleSubmit(event) {
     console.log(this.state.skills);
-    // fetch("http://localhost:5000/register", {
-    //   method: "POST",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     name: this.state.name,
-    //     lastName: this.state.lastName,
-    //     email: this.state.email,
-    //     password: this.state.password
-    //   })
-    // })
-    //   .then(response => {
-    //     if (response.status === 200) {
-    //       this.props.history.push("/login");
-    //     }
-    //     // TODO else show alert
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+    fetch("http://localhost:5000/register", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: this.state.name,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(response => {
+        if (response.status === 200) {
+          this.props.history.push("/");
+        }
+        // TODO else show alert
+      })
+      .catch(error => {
+        console.log(error);
+      });
     event.preventDefault();
   }
 

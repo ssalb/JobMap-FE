@@ -24,8 +24,8 @@ export default class AppMap extends React.Component {
 
     this.state = {
       myPosition: {
-        lat: 48.541134,
-        lon: 12.124257
+        lat: 48.548976,
+        lon: 12.162882
       },
       ts: 12345678,
       gotPosition: false,
@@ -67,7 +67,7 @@ export default class AppMap extends React.Component {
         },
         ts: coords.timestamp,
         gotPosition: true,
-        zoom: 16
+        zoom: 14
       });
     });
   }

@@ -45,18 +45,20 @@ export default function Skills(props) {
     dra: false
   });
 
-  const buildString = () => {
-    var str = "";
+  const setSkills = () => {
+    var selSkills = new Array();
     skills.map(skill => {
-      state[skill.target] ? (str = str + skill.text + ", ") : (str = str + "");
+      if (state[skill.target]) {
+        selSkills.push(skill.text);
+      }
     });
-    handleSkills(str);
+    handleSkills(selSkills);
   };
 
   const handleChange = event => {
     setState(
       { ...state, [event.target.name]: event.target.checked },
-      buildString()
+      setSkills()
     );
   };
 
