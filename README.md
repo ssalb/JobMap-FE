@@ -1,3 +1,6 @@
+## NOTE
+This was part of the [#WirVsVirus Hackaton](https://wirvsvirus.org/) and it's no longer active.
+
 # JobMap
 
 ## Backend
